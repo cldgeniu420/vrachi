@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>РЦОНПЗДиП — центр охраны нервно-психического здоровья детей и подростков, Махачкала</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#1456c8;--ink:#12233f;--mute:#5b6b85;--bg:#f4f8fe;--card:#fff;--soft:#e4eefc;--line:#d6e2f4;--gold:#f2a900}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Manrope,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+a{color:var(--blue)}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+header{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--line)}
+.bar{max-width:1080px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-weight:800;font-size:1.5rem;letter-spacing:.5px;color:var(--blue);text-decoration:none}
+.burger{width:44px;height:44px;border:1px solid var(--line);border-radius:10px;background:#fff;cursor:pointer;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;padding:0}
+.burger span{display:block;width:22px;height:3px;border-radius:2px;background:var(--blue);transition:transform .2s,opacity .2s}
+.burger[aria-expanded=true] span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+.burger[aria-expanded=true] span:nth-child(2){opacity:0}
+.burger[aria-expanded=true] span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+nav{display:none;border-top:1px solid var(--line);background:#fff}
+nav.open{display:block}
+nav a{display:block;max-width:1080px;margin:0 auto;padding:14px 20px;font-weight:700;font-size:1.1rem;color:var(--ink);text-decoration:none}
+nav a:hover,nav a.on{color:var(--blue);background:var(--soft)}
+main{max-width:1080px;margin:0 auto;padding:28px 20px 60px}
+h1{font-size:clamp(2.2rem,7vw,4rem);line-height:1.05;margin:0 0 12px;color:var(--blue);font-weight:800}
+h2{font-size:1.6rem;margin:40px 0 14px}
+h3{margin:0 0 4px;font-size:1.05rem}
+.lead{font-size:1.15rem;max-width:62ch;color:var(--ink)}
+.mute{color:var(--mute);font-size:.95rem}
+.hero{background:var(--blue);color:#fff;border-radius:20px;padding:34px 28px;margin-bottom:8px}
+.hero h1{color:#fff}
+.hero p{max-width:60ch;margin:0 0 18px;font-size:1.1rem}
+.btn{display:inline-block;background:#fff;color:var(--blue);font-weight:700;padding:12px 20px;border-radius:10px;text-decoration:none;border:0;cursor:pointer;font:inherit;font-weight:700}
+.btn.fill{background:var(--blue);color:#fff}
+.btn.line{background:transparent;color:#fff;border:2px solid #fff}
+.row{display:flex;gap:12px;flex-wrap:wrap}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+.box b.n{font-size:1.8rem;color:var(--blue);display:block;line-height:1.1}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.dc{display:flex;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;text-decoration:none;color:var(--ink)}
+.dc:hover{border-color:var(--blue)}
+.av{flex:none;width:52px;height:52px;border-radius:50%;background:var(--soft);color:var(--blue);display:grid;place-items:center;font-weight:800}
+.av.big{width:84px;height:84px;font-size:1.7rem}
+.tag{display:inline-block;font-size:.8rem;font-weight:700;padding:2px 9px;border-radius:99px;background:var(--soft);color:var(--blue);margin:4px 4px 0 0}
+.tag.best{background:var(--gold);color:#3a2800}
+.stars{color:var(--gold);letter-spacing:2px}
+.tools{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+input,select,textarea{font:inherit;padding:11px 12px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);width:100%}
+.tools input{flex:1;min-width:200px}
+.tools select{width:auto;min-width:200px}
+.sum{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.sum .big{font-size:3.4rem;font-weight:800;color:var(--blue);line-height:1}
+.rev{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-top:12px}
+.rev p{margin:6px 0 0}
+form{display:grid;gap:12px;margin-top:12px}
+.pick{display:flex;gap:4px}
+.pick button{border:0;background:none;font-size:2rem;line-height:1;color:#c7d3e6;cursor:pointer;padding:2px}
+.pick button.on{color:var(--gold)}
+.empty{padding:22px;border:2px dashed var(--line);border-radius:14px;color:var(--mute);text-align:center;margin-top:12px}
+.back{display:inline-block;margin-bottom:14px;font-weight:700}
+footer{max-width:1080px;margin:0 auto;padding:0 20px 40px;color:var(--mute);font-size:.88rem}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header>
+  <div class="bar">
+    <a class="logo" href="#home">РЦОНПЗДиП</a>
+    <button class="burger" id="burger" aria-label="Меню" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
+  </div>
+  <nav id="nav">
+    <a href="#home" data-p="home">Главное</a>
+    <a href="#reviews" data-p="reviews">Отзывы</a>
+    <a href="#doctors" data-p="doctors">Врачи</a>
+  </nav>
+</header>
+<main id="app"></main>
+<footer>
+  Список врачей — по данным ПроДокторов (страница обновлена 04.02.2022), рейтинги и число отзывов в карточках врачей — оттуда же. Актуальное расписание и перечень услуг уточняйте по телефону +7 988 643-47-11. Информация на сайте не заменяет приём врача.
+</footer>
+
+<script>
+/* ---------- ДАННЫЕ ---------- */
+const CENTER = {
+  short: "РЦОНПЗДиП",
+  full: "Республиканский центр охраны нервно-психического здоровья детей и подростков",
+  address: "г. Махачкала, просп. Имама Шамиля, д. 34Б",
+  phone: "+7 988 643-47-11",
+  gis: "https://2gis.ru/makhachkala/firm/70000001021817275"
+};
+
+/* Сюда можно вставить настоящие отзывы: {doc:"id врача или пусто", name:"Имя", rating:5, text:"...", date:"01.10.2026"} */
+const SEED_REVIEWS = [];
+
+/* id|ФИО|специальность|стаж (лет)|категория|рейтинг на ПроДокторов|число отзывов */
+const DOCS = `489000-magomedova|Магомедова Зарема Магомедовна|Невролог|15||4.6|9
+131860-medzhidova|Меджидова Джульетта Тажировна|Детский невролог|26|высшая категория|4.6|25
+1106773-ezberova|Эзберова Альбина Фазиловна|Невролог|6||3.2|3
+925908-dalgatova|Далгатова Патимат Апандиевна|Детский психиатр|38||2.9|2
+925896-alibekova|Алибекова Эльнара Абузитдиновна|Детский психиатр|23||2.4|2
+582565-halikova|Халикова Зарема Магомедовна|Детский психиатр|34|высшая категория|2.2|2
+925909-saidova|Саидова Аида Магомедовна|Детский психиатр|47||1.9|1
+925910-magomedova|Магомедова Зарипат Тиновна|Детский психиатр|14||0.0|1
+925950-abdulmanapova|Абдулманапова Пирзанат Насруллаевна|Детский стоматолог|23|||
+925964-akavova|Акавова Муминат Магомедганиповна|Детский массажист||||
+925905-alieva|Алиева Муминат Давудовна|Детский невролог|52|высшая категория||
+925948-alieva|Алиева Ханум Магомедовна|Детский невролог|50|высшая категория, доктор наук||
+925937-bazarganova|Базарганова Асият Магомедсайгидовна|Детский офтальмолог|39||||
+925959-gabibulaeva|Габибулаева Наифе Исламовна|Детский массажист|19|высшая категория||
+925962-gadzhieva|Гаджиева Ашура Магомедовна|Детский массажист|21|вторая категория||
+925938-gadzhieva|Гаджиева Бади Магомедхановна|Детский эндокринолог|51||||
+925906-gamrinskiy|Гамринский Марат Джамалудинович|Детский психиатр|44||||
+925947-gasanova|Гасанова Зоя Гасановна|Педиатр|51||||
+925957-gasanova|Гасанова Иманат Мурадовна|Детский массажист|32||||
+925934-dzhamaludinova|Джамалудинова Айшат Сайпудиновна|Детский ЛОР|34||||
+925904-isaeva|Исаева Загидат Мустафаевна|Детский психиатр|45|высшая категория||
+925931-isalabdulaeva|Исалабдулаева Рукият Абдуллаевна|Детский невролог|24|||
+925944-kazanbekov|Казанбеков Бинями Гаджибабаевич|Функциональный диагност|45|высшая категория||
+925912-kazimova|Казимова Мадина Мамедовна|Детский невролог|40|высшая категория||
+925966-kaplanova|Капланова Мадина Насуховна|Инструктор-методист||||
+925916-magomedova|Магомедова Майсарат Омаровна|Детский невролог|44||||
+925917-magomedova|Магомедова Надия Гамзатовна|Детский невролог|27|||
+925946-maksudova|Максудова Аминат Алиевна|Педиатр|41|||
+925956-medzhidova|Меджидова Зулейхат Абдурахмановна|Детский массажист||||
+834324-mirzabekova|Мирзабекова Таибат Мирзабековна|Детский невролог|22|||
+925911-mirzoeva|Мирзоева Аида Нуруллаховна|Детский психиатр|14|||
+925949-mollaeva|Моллаева Наида Раджабовна|Детский психиатр|33|высшая категория, доктор наук||
+383907-murachueva|Мурачуева Фарида Абуязидовна|Детский невролог|15|первая категория|0.0|1
+925920-musaeva|Мусаева Рагима Магомедовна|Детский невролог|65|высшая категория||
+925926-nuhkadieva|Нухкадиева Саида Нухкадиевна|Детский невролог|16|||
+925942-omargadzhieva|Омаргаджиева Патимат Магомедовна|Функциональный диагност|35|||
+925940-omarova|Омарова Марина Курбановна|Физиотерапевт|36|||
+925928-ramazanova|Рамазанова Ариза Гусейновна|Детский невролог|27|||
+925907-ramazanova|Рамазанова Бахтикай Магомедзагировна|Детский психиатр|54|высшая категория||
+925923-ramazanova|Рамазанова Кахай Рамазановна|Детский невролог|25|||
+925913-ramazanova|Рамазанова Марьям Алиевна|Детский невролог|55|||
+925952-sagadulaeva|Сагадулаева Умужат Нурутдиновна|Детский массажист||||
+925918-sefibekova|Сефибекова Зульфия Шахпазовна|Детский невролог|17|||
+925922-sulyaymanova|Сулейманова Хадижат Алибековна|Детский невролог|38|||
+925899-surakatova|Суракатова Самурат Аспизоновна|Детский невролог|14|||
+925965-tyaymurova|Теймурова Ифриз Мунсиновна|Детский массажист|36|||
+925951-ucumieva|Уцумиева Асият Магомедовна|Детский стоматолог|14|||
+925900-halikova|Халикова Зарема Мустафаевна|Детский психиатр|34|||
+346096-halipaeva|Халипаева Асият Магомедовна|Детский невролог|20|||
+925961-hizrigadzhieva|Хизригаджиева Загидат Сулайбановна|Детский массажист|19|||
+925958-shamsudinova|Шамсудинова Айзат Омаргаджиевна|Детский массажист|32|||
+925921-yusupova|Юсупова Ильмуханум Изамутдиновна|Детский невролог|49|высшая категория||`
+  .trim().split("\n").map(l => {
+    const [id, name, spec, exp, cat, pr, pn] = l.split("|");
+    return {id, name, spec, exp: +exp || 0, cat: cat || "", pr: pr || "", pn: +pn || 0};
+  });
+
+const BEST = {id: "umakhanova", name: "Умаханова Заира Магомедовна", spec: "Врач центра", exp: 0, cat: "", pr: "", pn: 0, best: true};
+const ALL = [BEST, ...DOCS];
+
+/* ---------- УТИЛИТЫ ---------- */
+const $ = (s, r = document) => r.querySelector(s);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"}[c]));
+const stars = n => "★".repeat(Math.round(n)) + "☆".repeat(5 - Math.round(n));
+const initials = n => n.split(" ").slice(0, 2).map(w => w[0]).join("");
+const plural = (n, a, b, c) => { const m = n % 100, k = n % 10; return n + " " + (m > 10 && m < 20 ? c : k === 1 ? a : k > 1 && k < 5 ? b : c); };
+const docById = id => ALL.find(d => d.id === id);
+
+function loadReviews() {
+  let saved = [];
+  try { saved = JSON.parse(localStorage.getItem("rc_reviews") || "[]"); } catch (e) {}
+  return SEED_REVIEWS.concat(saved);
+}
+function saveReview(r) {
+  let saved = [];
+  try { saved = JSON.parse(localStorage.getItem("rc_reviews") || "[]"); } catch (e) {}
+  saved.unshift(r);
+  try { localStorage.setItem("rc_reviews", JSON.stringify(saved)); } catch (e) {}
+}
+
+/* ---------- БЛОКИ ---------- */
+function docCard(d) {
+  const meta = [d.exp ? "стаж " + d.exp + " " + (d.exp % 10 === 1 && d.exp !== 11 ? "год" : d.exp % 10 > 1 && d.exp % 10 < 5 && (d.exp < 10 || d.exp > 20) ? "года" : "лет") : "", d.cat].filter(Boolean).join(", ");
+  return `<a class="dc" href="#doctor=${d.id}">
+    <div class="av">${esc(initials(d.name))}</div>
+    <div><h3>${esc(d.name)}</h3>
+    <div class="mute">${esc(d.spec)}${meta ? " · " + esc(meta) : ""}</div>
+    ${d.best ? '<span class="tag best">Лучший врач центра</span>' : ""}
+    ${d.pn ? `<span class="tag">ПроДокторов: ${esc(d.pr)} · ${plural(d.pn, "отзыв", "отзыва", "отзывов")}</span>` : ""}</div></a>`;
+}
+
+function reviewList(list) {
+  if (!list.length) return '<div class="empty">Отзывов пока нет. Станьте первым — расскажите о своём визите.</div>';
+  return list.map(r => {
+    const d = r.doc ? docById(r.doc) : null;
+    return `<div class="rev"><div><span class="stars">${stars(r.rating)}</span> <b>${esc(r.name)}</b> <span class="mute">· ${esc(r.date || "")}</span></div>
+    ${d ? `<div class="mute">Врач: ${esc(d.name)}</div>` : ""}<p>${esc(r.text)}</p></div>`;
+  }).join("");
+}
+
+function reviewForm(fixedDoc) {
+  const opts = fixedDoc ? "" : `<select name="doc" aria-label="Врач"><option value="">Центр в целом</option>${ALL.map(d => `<option value="${d.id}">${esc(d.name)}</option>`).join("")}</select>`;
+  return `<form id="rf" data-doc="${fixedDoc || ""}">
+    <div><div class="mute">Ваша оценка</div><div class="pick" role="group" aria-label="Оценка">${[1, 2, 3, 4, 5].map(i => `<button type="button" data-v="${i}" aria-label="${i}">★</button>`).join("")}</div></div>
+    <input name="name" placeholder="Ваше имя" required maxlength="60" aria-label="Имя">
+    ${opts}
+    <textarea name="text" rows="4" placeholder="Расскажите, как всё прошло" required maxlength="1500" aria-label="Текст отзыва"></textarea>
+    <button class="btn fill" type="submit">Отправить отзыв</button>
+    <div class="mute" id="rmsg">Отзыв сохраняется в вашем браузере. Чтобы отзывы видели все посетители, сайту нужен сервер.</div>
+  </form>`;
+}
+
+function bindForm() {
+  const f = $("#rf"); if (!f) return;
+  let val = 0;
+  f.querySelectorAll(".pick button").forEach(b => b.onclick = () => {
+    val = +b.dataset.v;
+    f.querySelectorAll(".pick button").forEach(x => x.classList.toggle("on", +x.dataset.v <= val));
+  });
+  f.onsubmit = e => {
+    e.preventDefault();
+    if (!val) { $("#rmsg").textContent = "Выберите оценку от 1 до 5 звёзд."; return; }
+    const d = new Date();
+    saveReview({
+      doc: f.dataset.doc || (f.elements.doc ? f.elements.doc.value : ""),
+      name: f.elements.name.value.trim(), rating: val, text: f.elements.text.value.trim(),
+      date: d.toLocaleDateString("ru-RU")
+    });
+    render();
+  };
+}
+
+/* ---------- СТРАНИЦЫ ---------- */
+function pageHome() {
+  const g = (...s) => DOCS.filter(d => s.some(x => d.spec.includes(x))).length;
+  const dirs = [
+    ["Неврология", g("невролог"), "Консультации и наблюдение детей неврологом."],
+    ["Психиатрия", g("психиатр"), "Приём детских психиатров, оценка нервно-психического здоровья."],
+    ["Педиатрия", g("Педиатр"), "Общее наблюдение за здоровьем ребёнка."],
+    ["Диагностика и физиотерапия", g("диагност", "Физиотерапевт"), "Функциональная диагностика и физиотерапевтическое лечение."],
+    ["Массаж и реабилитация", g("массажист", "методист"), "Детский массаж и лечебная физкультура."],
+    ["Узкие специалисты", g("стоматолог", "ЛОР", "офтальмолог", "эндокринолог"), "Стоматолог, ЛОР, офтальмолог и эндокринолог."]
+  ];
+  return `<section class="hero">
+    <h1>${CENTER.short}</h1>
+    <p>${CENTER.full}. Махачкала.</p>
+    <div class="row"><a class="btn" href="${CENTER.gis}" target="_blank" rel="noopener">Открыть в 2ГИС</a><a class="btn line" href="#doctors">Врачи центра</a></div>
+  </section>
+
+  <h2>Что это за центр</h2>
+  <p class="lead">${CENTER.short} — государственное учреждение здравоохранения в Махачкале, которое занимается нервно-психическим здоровьем детей и подростков: помогает выявлять нарушения развития, наблюдает детей у профильных специалистов и проводит лечение и реабилитацию. В центре принимают ${ALL.length} специалистов.</p>
+
+  <h2>Какие направления есть в центре</h2>
+  <div class="grid">${dirs.map(d => `<div class="box"><b class="n">${d[1]}</b><h3>${d[0]}</h3><div class="mute">${d[2]} Врачей: ${d[1]}.</div></div>`).join("")}</div>
+  <p class="mute">Направления составлены по специальностям врачей центра. Точный перечень услуг и цены уточняйте по телефону.</p>
+
+  <h2>Где находится</h2>
+  <div class="facts">
+    <div class="box"><h3>Адрес</h3>${CENTER.address}</div>
+    <div class="box"><h3>Телефон</h3><a href="tel:+79886434711">${CENTER.phone}</a></div>
+    <div class="box"><h3>На карте</h3><a href="${CENTER.gis}" target="_blank" rel="noopener">Центр в 2ГИС: маршрут и режим работы</a></div>
+  </div>
+
+  <h2>Лучший врач центра</h2>
+  ${docCard(BEST)}`;
+}
+
+function pageDoctors() {
+  const specs = [...new Set(ALL.map(d => d.spec))].sort();
+  return `<h1 style="font-size:2.2rem">Врачи центра</h1>
+  <p class="mute">${ALL.length} специалистов. Нажмите на врача, чтобы посмотреть его отзывы.</p>
+  <div class="tools"><input id="q" type="search" placeholder="Поиск по фамилии" aria-label="Поиск"><select id="sp" aria-label="Специальность"><option value="">Все специальности</option>${specs.map(s => `<option>${esc(s)}</option>`).join("")}</select></div>
+  <div class="grid" id="dl"></div>`;
+}
+function bindDoctors() {
+  const upd = () => {
+    const q = $("#q").value.trim().toLowerCase(), s = $("#sp").value;
+    const list = ALL.filter(d => (!q || d.name.toLowerCase().includes(q)) && (!s || d.spec === s));
+    $("#dl").innerHTML = list.length ? list.map(docCard).join("") : '<div class="empty">Никого не найдено. Измените запрос или выберите «Все специальности».</div>';
+  };
+  $("#q").oninput = upd; $("#sp").onchange = upd; upd();
+}
+
+function pageDoctor(id) {
+  const d = docById(id);
+  if (!d) return '<a class="back" href="#doctors">← Все врачи</a><div class="empty">Такого врача нет в списке.</div>';
+  const rv = loadReviews().filter(r => r.doc === d.id);
+  const avg = rv.length ? rv.reduce((a, r) => a + r.rating, 0) / rv.length : 0;
+  const facts = [d.exp ? "Стаж: " + d.exp + " лет" : "", d.cat].filter(Boolean);
+  return `<a class="back" href="#doctors">← Все врачи</a>
+  <div class="row" style="align-items:center;gap:18px">
+    <div class="av big">${esc(initials(d.name))}</div>
+    <div><h1 style="font-size:clamp(1.6rem,5vw,2.4rem);color:var(--ink)">${esc(d.name)}</h1>
+    <div class="mute">${esc(d.spec)}</div>
+    ${d.best ? '<span class="tag best">Лучший врач центра</span>' : ""}
+    ${facts.map(f => `<span class="tag">${esc(f)}</span>`).join("")}
+    ${d.pn ? `<span class="tag">ПроДокторов: ${esc(d.pr)} · ${plural(d.pn, "отзыв", "отзыва", "отзывов")}</span>` : ""}</div>
+  </div>
+  ${d.best ? "" : `<p><a href="https://prodoctorov.ru/mahachkala/vrach/${d.id}/" target="_blank" rel="noopener">Профиль врача на ПроДокторов</a></p>`}
+  <h2>Отзывы о враче${rv.length ? ` · <span class="stars">${stars(avg)}</span> ${avg.toFixed(1)}` : ""}</h2>
+  ${reviewList(rv)}
+  <h2>Оставить отзыв</h2>
+  ${reviewForm(d.id)}`;
+}
+
+function pageReviews() {
+  const rv = loadReviews();
+  const avg = rv.length ? rv.reduce((a, r) => a + r.rating, 0) / rv.length : 0;
+  return `<h1 style="font-size:2.2rem">Отзывы</h1>
+  <div class="box sum">
+    <div class="big">${rv.length ? avg.toFixed(1) : "—"}</div>
+    <div>${rv.length ? `<div class="stars" style="font-size:1.4rem">${stars(avg)}</div>` : ""}
+    <b>${rv.length ? "Всего отзывов: " + rv.length : "Отзывов пока нет"}</b>
+    <div class="mute">Общая оценка считается по отзывам посетителей сайта.</div></div>
+  </div>
+  <h2>Что пишут пациенты</h2>
+  ${reviewList(rv)}
+  <h2>Оставить отзыв</h2>
+  ${reviewForm("")}`;
+}
+
+/* ---------- РОУТЕР ---------- */
+function render() {
+  const h = location.hash.slice(1) || "home";
+  const app = $("#app");
+  let page = h.split("=")[0];
+  if (page === "reviews") app.innerHTML = pageReviews();
+  else if (page === "doctors") app.innerHTML = pageDoctors();
+  else if (page === "doctor") app.innerHTML = pageDoctor(h.split("=")[1]);
+  else { page = "home"; app.innerHTML = pageHome(); }
+  if (page === "doctors") bindDoctors();
+  bindForm();
+  document.querySelectorAll("nav a").forEach(a => a.classList.toggle("on", a.dataset.p === (page === "doctor" ? "doctors" : page)));
+  closeMenu();
+  window.scrollTo(0, 0);
+}
+function closeMenu() { $("#nav").classList.remove("open"); $("#burger").setAttribute("aria-expanded", "false"); }
+$("#burger").onclick = () => {
+  const open = $("#nav").classList.toggle("open");
+  $("#burger").setAttribute("aria-expanded", open);
+};
+window.addEventListener("hashchange", render);
+render();
+</script>
+</body>
+</html>
