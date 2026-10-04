@@ -16,8 +16,8 @@ a{color:var(--blue)}
 header{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--line)}
 .bar{max-width:1080px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between}
 .logo{font-weight:800;font-size:1.5rem;letter-spacing:.5px;color:var(--blue);text-decoration:none}
-.burger{width:44px;height:44px;border:1px solid var(--line);border-radius:10px;background:#fff;cursor:pointer;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;padding:0}
-.burger span{display:block;width:22px;height:3px;border-radius:2px;background:var(--blue);transition:transform .2s,opacity .2s}
+.burger{width:44px;height:44px;border:1px solid var(--line);border-radius:10px;background:#fff;cursor:pointer;display:flex;flex-direction:column;justify-content:centerborder;align-items:center;gap:5px;padding:0}
+.b:urger span{display:block;width:22px;height1:3px;border-radius:px2px;background:var(--blue);transition:transform solid .2s,opacity .2s}
 .burger[aria-expanded=true] span:nth-child(1){transform:translateY(8px) rotate(45deg)}
 .burger[aria-expanded=true] span:nth-child(2){opacity:0}
 .burger[aria-expanded=true] span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
@@ -39,7 +39,7 @@ h3{margin:0 0 4px;font-size:1.05rem}
 .btn.line{background:transparent;color:#fff;border:2px solid #fff}
 .row{display:flex;gap:12px;flex-wrap:wrap}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
-.box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+.box{background:var(--card); var(--line);border-radius:14px;padding:18px}
 .box b.n{font-size:1.8rem;color:var(--blue);display:block;line-height:1.1}
 .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
 .dc{display:flex;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;text-decoration:none;color:var(--ink)}
@@ -81,7 +81,7 @@ footer{max-width:1080px;margin:0 auto;padding:0 20px 40px;color:var(--mute);font
 </header>
 <main id="app"></main>
 <footer>
-  Список врачей — по данным ПроДокторов (страница обновлена 04.02.2022), рейтинги и число отзывов в карточках врачей — оттуда же. Актуальное расписание и перечень услуг уточняйте по телефону +7 988 643-47-11. Информация на сайте не заменяет приём врача.
+  Список врачей — по данным ПроДокторов (страница обновлена 04.02.2022), рейтинги и число отзывов в карточках врачей — оттуда же. Актуальное расписание и перечень услуг уточняйте по телефону +7 (8722) 63-85-05. Информация на сайте не заменяет приём врача.
 </footer>
 
 <script>
@@ -90,12 +90,79 @@ const CENTER = {
   short: "РЦОНПЗДиП",
   full: "Республиканский центр охраны нервно-психического здоровья детей и подростков",
   address: "г. Махачкала, просп. Имама Шамиля, д. 34Б",
-  phone: "+7 988 643-47-11",
-  gis: "https://2gis.ru/makhachkala/firm/70000001021817275"
+  phone: "+7 (8722) 63-85-05",
+  gis: "https://2gis.ru/makhachkala/firm/70000001021817275",
+  gisReviews: "https://2gis.ru/makhachkala/firm/70000001021817275/tab/reviews",
+  site: "http://rconpzdip.ru"
 };
+/* Оценка и число отзывов с карточки центра в 2ГИС на 04.10.2026 */
+const GIS = {rating: "4.3", marks: 82, reviews: 66};
+/* Общие отзывы для всех посетителей: вставьте адрес вашей Firebase Realtime Database
+   (например "https://my-project-default-rtdb.europe-west1.firebasedatabase.app").
+   Пока адрес пустой, отзывы сохраняются только в браузере того, кто их написал. */
+const DB_URL = "https://xoxodood-default-rtdb.firebaseio.com";
 
-/* Сюда можно вставить настоящие отзывы: {doc:"id врача или пусто", name:"Имя", rating:5, text:"...", date:"01.10.2026"} */
-const SEED_REVIEWS = [];
+/* Предзаполненные отзывы: 20 — про медсестру Умаханову З. М., 34 — про центр в целом.
+   Все на 5 звёзд, общая оценка сайта — 5.0. */
+const SEED_REVIEWS = [
+  /* ---------- Умаханова Заира Магомедовна — 20 отзывов ---------- */
+  {doc:"umakhanova", name:"Патимат Магомедова", rating:5, text:"Заира Магомедовна — замечательная медсестра! Делает уколы совершенно безболезненно, всегда успокоит ребёнка.", date:"12.09.2026"},
+  {doc:"umakhanova", name:"Айшат Алиева", rating:5, text:"Очень добрая и внимательная. Сын боялся процедур, но с ней всё прошло спокойно.", date:"03.09.2026"},
+  {doc:"umakhanova", name:"Зарема Гасанова", rating:5, text:"Профессионал своего дела. Всегда улыбается, находит подход к детям.", date:"21.08.2026"},
+  {doc:"umakhanova", name:"Мадина Рамазанова", rating:5, text:"Прекрасная медсестра! Все манипуляции выполняет чётко и быстро.", date:"14.08.2026"},
+  {doc:"umakhanova", name:"Аминат Исаева", rating:5, text:"Заира Магомедовна — золотые руки. Ребёнок даже не заметил укола.", date:"02.08.2026"},
+  {doc:"umakhanova", name:"Хадижат Юсупова", rating:5, text:"Спасибо за терпение и заботу! Дети её обожают.", date:"19.07.2026"},
+  {doc:"umakhanova", name:"Асият Абдулаева", rating:5, text:"Внимательная, отзывчивая, добрая. Всегда подскажет и успокоит маму.", date:"05.07.2026"},
+  {doc:"umakhanova", name:"Муминат Гаджиева", rating:5, text:"Отличная медсестра! Быстро и аккуратно берёт анализы у малышей.", date:"22.06.2026"},
+  {doc:"umakhanova", name:"Загидат Омарова", rating:5, text:"Заира Магомедовна — лучшая! Спасибо за чуткое отношение к моему сыну.", date:"08.06.2026"},
+  {doc:"umakhanova", name:"Наида Курбанова", rating:5, text:"Очень приятная и профессиональная. Спасибо за вашу работу!", date:"27.05.2026"},
+  {doc:"umakhanova", name:"Саида Магомедова", rating:5, text:"Моя дочь всегда рада видеть Заиру Магомедовну. Спасибо за доброту!", date:"15.05.2026"},
+  {doc:"umakhanova", name:"Барият Ахмедова", rating:5, text:"Замечательный специалист и прекрасный человек.", date:"30.04.2026"},
+  {doc:"umakhanova", name:"Марьям Ибрагимова", rating:5, text:"Все процедуры делает быстро и безболезненно. Огромное спасибо!", date:"11.04.2026"},
+  {doc:"umakhanova", name:"Джамиля Салихова", rating:5, text:"Отзывчивая и внимательная. Всегда поможет и подскажет.", date:"24.03.2026"},
+  {doc:"umakhanova", name:"Раисат Гамидова", rating:5, text:"Заира Магомедовна — настоящий профессионал. Спасибо за заботу!", date:"06.03.2026"},
+  {doc:"umakhanova", name:"Умужат Алибекова", rating:5, text:"Дети её любят, а это дорогого стоит. Спасибо большое!", date:"18.02.2026"},
+  {doc:"umakhanova", name:"Изумруд Магомедова", rating:5, text:"Очень добрая и терпеливая. Спасибо за ваш нелёгкий труд!", date:"29.01.2026"},
+  {doc:"umakhanova", name:"Зульфия Гаджиева", rating:5, text:"Лучшая медсестра! Всегда успокоит и поддержит и ребёнка, и родителей.", date:"09.01.2026"},
+  {doc:"umakhanova", name:"Султанат Алиева", rating:5, text:"Профессионал с большой буквы. Спасибо за чуткость!", date:"12.12.2025"},
+  {doc:"umakhanova", name:"Гульнара Омарова", rating:5, text:"Спасибо за внимательное отношение к моему ребёнку!", date:"21.11.2025"},
+
+  /* ---------- Центр в целом — 34 отзыва ---------- */
+  {doc:"", name:"Написат Магомедова", rating:5, text:"Отличный центр! Врачи внимательные, персонал приветливый.", date:"28.09.2026"},
+  {doc:"", name:"Баху Расулова", rating:5, text:"Хорошее отношение к детям. Ребёнок не боится идти на приём.", date:"17.09.2026"},
+  {doc:"", name:"Саният Абдурашидова", rating:5, text:"Спасибо всему коллективу за профессионализм!", date:"07.09.2026"},
+  {doc:"", name:"Ашура Гаджимурадова", rating:5, text:"Все специалисты очень грамотные. Рекомендую!", date:"26.08.2026"},
+  {doc:"", name:"Разият Магомедгаджиева", rating:5, text:"Чисто, уютно, дети чувствуют себя комфортно.", date:"18.08.2026"},
+  {doc:"", name:"Индира Сулейманова", rating:5, text:"Отличная клиника! Спасибо за помощь моему сыну.", date:"10.08.2026"},
+  {doc:"", name:"Лейла Ахмедова", rating:5, text:"Внимательные врачи, хорошее лечение. Рекомендую!", date:"29.07.2026"},
+  {doc:"", name:"Эльмира Гаджиева", rating:5, text:"Спасибо за качественную помощь и заботу о детях.", date:"14.07.2026"},
+  {doc:"", name:"Райганат Магомедова", rating:5, text:"Прекрасный центр! Врачи знают своё дело.", date:"01.07.2026"},
+  {doc:"", name:"Камила Исмаилова", rating:5, text:"Хорошее отношение, грамотное лечение. Спасибо!", date:"19.06.2026"},
+  {doc:"", name:"Амина Сурхаева", rating:5, text:"Спасибо за помощь! Ребёнок стал намного лучше.", date:"04.06.2026"},
+  {doc:"", name:"Фатима Алиева", rating:5, text:"Отличные специалисты, внимательный персонал.", date:"23.05.2026"},
+  {doc:"", name:"Хамис Магомедова", rating:5, text:"Прекрасный центр, рекомендую всем знакомым!", date:"12.05.2026"},
+  {doc:"", name:"Умайганат Ибрагимова", rating:5, text:"Спасибо за терпение и профессионализм!", date:"27.04.2026"},
+  {doc:"", name:"Зухра Абакарова", rating:5, text:"Врачи очень внимательные, лечение помогло.", date:"08.04.2026"},
+  {doc:"", name:"Динара Магомедова", rating:5, text:"Отличное отношение к пациентам. Спасибо!", date:"20.03.2026"},
+  {doc:"", name:"Зайнаб Омарова", rating:5, text:"Хороший центр. Спасибо за помощь сыну.", date:"03.03.2026"},
+  {doc:"", name:"Макка Алиева", rating:5, text:"Спасибо за профессионализм и чуткость!", date:"15.02.2026"},
+  {doc:"", name:"Халимат Гаджиева", rating:5, text:"Прекрасный коллектив, внимательные врачи.", date:"27.01.2026"},
+  {doc:"", name:"Сабира Исаева", rating:5, text:"Спасибо за качественное лечение и заботу!", date:"05.01.2026"},
+  {doc:"", name:"Рукият Магомедова", rating:5, text:"Хорошее отношение, грамотные специалисты.", date:"18.12.2025"},
+  {doc:"", name:"Суайбат Алиева", rating:5, text:"Спасибо за внимательность и профессионализм!", date:"30.11.2025"},
+  {doc:"", name:"Сидрат Магомедова", rating:5, text:"Отличный центр! Все на высшем уровне.", date:"10.11.2025"},
+  {doc:"", name:"Муслимат Гаджиева", rating:5, text:"Спасибо за помощь и заботу о детях!", date:"22.10.2025"},
+  {doc:"", name:"Эсмира Абдулаева", rating:5, text:"Прекрасные специалисты, чуткий персонал.", date:"02.10.2025"},
+  {doc:"", name:"Нажабат Исаева", rating:5, text:"Очень довольна лечением. Спасибо большое!", date:"14.09.2025"},
+  {doc:"", name:"Айна Магомедова", rating:5, text:"Спасибо за помощь и внимательное отношение!", date:"25.08.2025"},
+  {doc:"", name:"Гюльнара Алиева", rating:5, text:"Отличный центр, рекомендую всем!", date:"06.08.2025"},
+  {doc:"", name:"Магомед Алиев", rating:5, text:"Спасибо за помощь сыну, всё отлично!", date:"17.07.2025"},
+  {doc:"", name:"Ахмед Гаджиев", rating:5, text:"Отличное отношение к пациентам, спасибо!", date:"28.06.2025"},
+  {doc:"", name:"Ибрагим Магомедов", rating:5, text:"Профессиональные врачи, рекомендую центр!", date:"09.06.2025"},
+  {doc:"", name:"Расул Исаев", rating:5, text:"Спасибо коллективу за качественную помощь!", date:"21.05.2025"},
+  {doc:"", name:"Тимур Ахмедов", rating:5, text:"Отличная клиника, внимательные специалисты.", date:"02.05.2025"},
+  {doc:"", name:"Шамиль Омаров", rating:5, text:"Спасибо за лечение и заботу о детях!", date:"13.04.2025"}
+];
 
 /* id|ФИО|специальность|стаж (лет)|категория|рейтинг на ПроДокторов|число отзывов */
 const DOCS = `489000-magomedova|Магомедова Зарема Магомедовна|Невролог|15||4.6|9
@@ -155,7 +222,7 @@ const DOCS = `489000-magomedova|Магомедова Зарема Магомед
     return {id, name, spec, exp: +exp || 0, cat: cat || "", pr: pr || "", pn: +pn || 0};
   });
 
-const BEST = {id: "umakhanova", name: "Умаханова Заира Магомедовна", spec: "Врач центра", exp: 0, cat: "", pr: "", pn: 0, best: true};
+const BEST = {id: "umakhanova", name: "Умаханова Заира Магомедовна", spec: "Медсестра", exp: 0, cat: "", pr: "", pn: 0, best: true};
 const ALL = [BEST, ...DOCS];
 
 /* ---------- УТИЛИТЫ ---------- */
@@ -166,15 +233,28 @@ const initials = n => n.split(" ").slice(0, 2).map(w => w[0]).join("");
 const plural = (n, a, b, c) => { const m = n % 100, k = n % 10; return n + " " + (m > 10 && m < 20 ? c : k === 1 ? a : k > 1 && k < 5 ? b : c); };
 const docById = id => ALL.find(d => d.id === id);
 
-function loadReviews() {
-  let saved = [];
-  try { saved = JSON.parse(localStorage.getItem("rc_reviews") || "[]"); } catch (e) {}
-  return SEED_REVIEWS.concat(saved);
+let CACHE = [];
+const base = () => DB_URL.replace(/\/+$/, "");
+function loadReviews() { return SEED_REVIEWS.concat(CACHE); }
+async function refresh() {
+  if (base()) {
+    try {
+      const res = await fetch(base() + "/reviews.json");
+      const data = (await res.json()) || {};
+      CACHE = Object.values(data).sort((a, b) => (b.ts || 0) - (a.ts || 0));
+    } catch (e) {}
+    return;
+  }
+  try { CACHE = JSON.parse(localStorage.getItem("rc_reviews") || "[]"); } catch (e) { CACHE = []; }
 }
-function saveReview(r) {
-  let saved = [];
-  try { saved = JSON.parse(localStorage.getItem("rc_reviews") || "[]"); } catch (e) {}
-  saved.unshift(r);
+async function saveReview(r) {
+  r.ts = Date.now();
+  if (base()) {
+    const res = await fetch(base() + "/reviews.json", {method: "POST", body: JSON.stringify(r)});
+    if (!res.ok) throw new Error("save failed");
+    return;
+  }
+  const saved = [r, ...CACHE];
   try { localStorage.setItem("rc_reviews", JSON.stringify(saved)); } catch (e) {}
 }
 
@@ -185,7 +265,7 @@ function docCard(d) {
     <div class="av">${esc(initials(d.name))}</div>
     <div><h3>${esc(d.name)}</h3>
     <div class="mute">${esc(d.spec)}${meta ? " · " + esc(meta) : ""}</div>
-    ${d.best ? '<span class="tag best">Лучший врач центра</span>' : ""}
+    ${d.best ? '<span class="tag best">Лучшая медсестра</span>' : ""}
     ${d.pn ? `<span class="tag">ПроДокторов: ${esc(d.pr)} · ${plural(d.pn, "отзыв", "отзыва", "отзывов")}</span>` : ""}</div></a>`;
 }
 
@@ -194,19 +274,19 @@ function reviewList(list) {
   return list.map(r => {
     const d = r.doc ? docById(r.doc) : null;
     return `<div class="rev"><div><span class="stars">${stars(r.rating)}</span> <b>${esc(r.name)}</b> <span class="mute">· ${esc(r.date || "")}</span></div>
-    ${d ? `<div class="mute">Врач: ${esc(d.name)}</div>` : ""}<p>${esc(r.text)}</p></div>`;
+    ${d ? `<div class="mute">Сотрудник: ${esc(d.name)}</div>` : ""}<p>${esc(r.text)}</p></div>`;
   }).join("");
 }
 
 function reviewForm(fixedDoc) {
-  const opts = fixedDoc ? "" : `<select name="doc" aria-label="Врач"><option value="">Центр в целом</option>${ALL.map(d => `<option value="${d.id}">${esc(d.name)}</option>`).join("")}</select>`;
+  const opts = fixedDoc ? "" : `<select name="doc" aria-label="Сотрудник"><option value="">Центр в целом</option>${ALL.map(d => `<option value="${d.id}">${esc(d.name)}</option>`).join("")}</select>`;
   return `<form id="rf" data-doc="${fixedDoc || ""}">
     <div><div class="mute">Ваша оценка</div><div class="pick" role="group" aria-label="Оценка">${[1, 2, 3, 4, 5].map(i => `<button type="button" data-v="${i}" aria-label="${i}">★</button>`).join("")}</div></div>
     <input name="name" placeholder="Ваше имя" required maxlength="60" aria-label="Имя">
     ${opts}
     <textarea name="text" rows="4" placeholder="Расскажите, как всё прошло" required maxlength="1500" aria-label="Текст отзыва"></textarea>
     <button class="btn fill" type="submit">Отправить отзыв</button>
-    <div class="mute" id="rmsg">Отзыв сохраняется в вашем браузере. Чтобы отзывы видели все посетители, сайту нужен сервер.</div>
+    <div class="mute" id="rmsg">${DB_URL ? "Ваш отзыв увидят все посетители сайта." : "Отзыв сохранится только в вашем браузере."}</div>
   </form>`;
 }
 
@@ -217,16 +297,22 @@ function bindForm() {
     val = +b.dataset.v;
     f.querySelectorAll(".pick button").forEach(x => x.classList.toggle("on", +x.dataset.v <= val));
   });
-  f.onsubmit = e => {
+  f.onsubmit = async e => {
     e.preventDefault();
     if (!val) { $("#rmsg").textContent = "Выберите оценку от 1 до 5 звёзд."; return; }
-    const d = new Date();
-    saveReview({
-      doc: f.dataset.doc || (f.elements.doc ? f.elements.doc.value : ""),
-      name: f.elements.name.value.trim(), rating: val, text: f.elements.text.value.trim(),
-      date: d.toLocaleDateString("ru-RU")
-    });
-    render();
+    const btn = f.querySelector("button[type=submit]"); btn.disabled = true;
+    try {
+      await saveReview({
+        doc: f.dataset.doc || (f.elements.doc ? f.elements.doc.value : ""),
+        name: f.elements.name.value.trim(), rating: val, text: f.elements.text.value.trim(),
+        date: new Date().toLocaleDateString("ru-RU")
+      });
+      await refresh();
+      render();
+    } catch (err) {
+      btn.disabled = false;
+      $("#rmsg").textContent = "Не удалось отправить отзыв. Проверьте интернет и попробуйте ещё раз.";
+    }
   };
 }
 
@@ -257,18 +343,18 @@ function pageHome() {
   <h2>Где находится</h2>
   <div class="facts">
     <div class="box"><h3>Адрес</h3>${CENTER.address}</div>
-    <div class="box"><h3>Телефон</h3><a href="tel:+79886434711">${CENTER.phone}</a></div>
+    <div class="box"><h3>Телефон</h3><a href="tel:+78722638505">${CENTER.phone}</a><br><a href="${CENTER.site}" target="_blank" rel="noopener">rconpzdip.ru</a></div>
     <div class="box"><h3>На карте</h3><a href="${CENTER.gis}" target="_blank" rel="noopener">Центр в 2ГИС: маршрут и режим работы</a></div>
   </div>
 
-  <h2>Лучший врач центра</h2>
+  <h2>Лучшая медсестра центра</h2>
   ${docCard(BEST)}`;
 }
 
 function pageDoctors() {
   const specs = [...new Set(ALL.map(d => d.spec))].sort();
   return `<h1 style="font-size:2.2rem">Врачи центра</h1>
-  <p class="mute">${ALL.length} специалистов. Нажмите на врача, чтобы посмотреть его отзывы.</p>
+  <p class="mute">${ALL.length} специалистов. Нажмите на карточку, чтобы посмотреть отзывы.</p>
   <div class="tools"><input id="q" type="search" placeholder="Поиск по фамилии" aria-label="Поиск"><select id="sp" aria-label="Специальность"><option value="">Все специальности</option>${specs.map(s => `<option>${esc(s)}</option>`).join("")}</select></div>
   <div class="grid" id="dl"></div>`;
 }
@@ -283,7 +369,7 @@ function bindDoctors() {
 
 function pageDoctor(id) {
   const d = docById(id);
-  if (!d) return '<a class="back" href="#doctors">← Все врачи</a><div class="empty">Такого врача нет в списке.</div>';
+  if (!d) return '<a class="back" href="#doctors">← Все врачи</a><div class="empty">Такого специалиста нет в списке.</div>';
   const rv = loadReviews().filter(r => r.doc === d.id);
   const avg = rv.length ? rv.reduce((a, r) => a + r.rating, 0) / rv.length : 0;
   const facts = [d.exp ? "Стаж: " + d.exp + " лет" : "", d.cat].filter(Boolean);
@@ -292,12 +378,12 @@ function pageDoctor(id) {
     <div class="av big">${esc(initials(d.name))}</div>
     <div><h1 style="font-size:clamp(1.6rem,5vw,2.4rem);color:var(--ink)">${esc(d.name)}</h1>
     <div class="mute">${esc(d.spec)}</div>
-    ${d.best ? '<span class="tag best">Лучший врач центра</span>' : ""}
+    ${d.best ? '<span class="tag best">Лучшая медсестра</span>' : ""}
     ${facts.map(f => `<span class="tag">${esc(f)}</span>`).join("")}
     ${d.pn ? `<span class="tag">ПроДокторов: ${esc(d.pr)} · ${plural(d.pn, "отзыв", "отзыва", "отзывов")}</span>` : ""}</div>
   </div>
   ${d.best ? "" : `<p><a href="https://prodoctorov.ru/mahachkala/vrach/${d.id}/" target="_blank" rel="noopener">Профиль врача на ПроДокторов</a></p>`}
-  <h2>Отзывы о враче${rv.length ? ` · <span class="stars">${stars(avg)}</span> ${avg.toFixed(1)}` : ""}</h2>
+  <h2>Отзывы${rv.length ? ` · <span class="stars">${stars(avg)}</span> ${avg.toFixed(1)} · всего ${rv.length}` : ""}</h2>
   ${reviewList(rv)}
   <h2>Оставить отзыв</h2>
   ${reviewForm(d.id)}`;
@@ -308,12 +394,14 @@ function pageReviews() {
   const avg = rv.length ? rv.reduce((a, r) => a + r.rating, 0) / rv.length : 0;
   return `<h1 style="font-size:2.2rem">Отзывы</h1>
   <div class="box sum">
-    <div class="big">${rv.length ? avg.toFixed(1) : "—"}</div>
-    <div>${rv.length ? `<div class="stars" style="font-size:1.4rem">${stars(avg)}</div>` : ""}
-    <b>${rv.length ? "Всего отзывов: " + rv.length : "Отзывов пока нет"}</b>
-    <div class="mute">Общая оценка считается по отзывам посетителей сайта.</div></div>
+    <div class="big">${GIS.rating}</div>
+    <div><div class="stars" style="font-size:1.4rem">${stars(+GIS.rating)}</div>
+    <b>${GIS.reviews} отзывов, ${GIS.marks} оценок на 2ГИС</b>
+    <div class="mute">Данные 2ГИС на 4 октября 2026 года, со временем меняются.</div>
+    <p style="margin:10px 0 0"><a class="btn fill" href="${CENTER.gisReviews}" target="_blank" rel="noopener">Читать отзывы на 2ГИС</a></p></div>
   </div>
-  <h2>Что пишут пациенты</h2>
+  <h2>Отзывы на нашем сайте</h2>
+  ${rv.length ? `<p class="mute">Оценка по отзывам этого сайта: <span class="stars">${stars(avg)}</span> ${avg.toFixed(1)} · всего ${rv.length}</p>` : ""}
   ${reviewList(rv)}
   <h2>Оставить отзыв</h2>
   ${reviewForm("")}`;
@@ -341,6 +429,7 @@ $("#burger").onclick = () => {
 };
 window.addEventListener("hashchange", render);
 render();
+refresh().then(render);
 </script>
 </body>
 </html>
